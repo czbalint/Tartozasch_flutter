@@ -68,32 +68,26 @@ class _AddGroupStateDialog extends State<AddGroupDialog> {
                 Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
-                        child: SizedBox(
-                          height: 30,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text("MÉGSE"),
-                          ),
+                      SizedBox(
+                        height: 30,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text("MÉGSE"),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30),
-                        child: SizedBox(
-                          height: 30,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              groupCubit.addGroup(textController.value.text);
-                              textController.clear();
-                              Navigator.pop(context);
-                            },
-                            child: const Text("OK"),
-                          ),
+                      SizedBox(
+                        height: 30,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            groupCubit.addGroup(textController.value.text);
+                            textController.clear();
+                            Navigator.pop(context);
+                          },
+                          child: const Text("OK"),
                         ),
                       ),
 

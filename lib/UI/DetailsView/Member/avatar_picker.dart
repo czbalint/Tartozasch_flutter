@@ -38,6 +38,7 @@ class _MemberAvatarPickerState extends State<MemberAvatarPicker> {
     return Padding(
       padding: const EdgeInsets.only(top: 5, bottom: 20),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           const Text(
               "Válassz avatárt: "
@@ -45,7 +46,7 @@ class _MemberAvatarPickerState extends State<MemberAvatarPicker> {
           Container(
             height: 45,
             width: 45,
-            margin: const EdgeInsets.only(left: 33),
+            margin: const EdgeInsets.only(left: 10),
             child: svgRoot == null
               ? const SizedBox.shrink()
               : CustomPaint(
@@ -57,21 +58,18 @@ class _MemberAvatarPickerState extends State<MemberAvatarPicker> {
               shape: BoxShape.circle
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 15),
-            child: IconButton(
-              onPressed: () {
-                var l = List.generate(12, (_) => Random().nextInt(100));
-                setState(() {
-                  svgCode = multiavatar(l.join());
-                });
-                _generateSvg();
-              },
-              icon: const Icon(Icons.refresh),
-              color: Colors.black,
-              iconSize: 35,
-              splashRadius: 25,
-            )
+          IconButton(
+            onPressed: () {
+              var l = List.generate(12, (_) => Random().nextInt(100));
+              setState(() {
+                svgCode = multiavatar(l.join());
+              });
+              _generateSvg();
+            },
+            icon: const Icon(Icons.refresh),
+            color: Colors.black,
+            iconSize: 35,
+            splashRadius: 25,
           )
         ],
       ),
