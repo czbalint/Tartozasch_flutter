@@ -90,9 +90,12 @@ class _SummaryPageState extends State<SummaryPage> {
                 itemBuilder: (context, index) {
                   var cm = widget.group.members[index];
                   if (memberDebits.containsKey(cm.id)) {
-                    return MemberListItem(
-                      currentMember: cm,
-                      debitSum: memberDebits[cm.id]!,
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: MemberListItem(
+                        currentMember: cm,
+                        debitSum: memberDebits[cm.id]!,
+                      ),
                     );
                   }
                   return Container();
