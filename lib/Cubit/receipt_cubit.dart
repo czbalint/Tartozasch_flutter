@@ -1,7 +1,4 @@
-import 'dart:ffi';
-
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterhf/Database/Groups/data_source.dart';
 import 'package:flutterhf/UI/DetailsView/Receipe/receipe.dart';
@@ -79,6 +76,13 @@ class ReceiptCubit extends Cubit<ReceiptCubitState> {
     emit(ReceiptLoad());
     group.sumSpending -= receipt.count;
     var removedIndex = group.receipts.indexOf(receipt);
+
+    receipt.member.debits.removeWhere((element) => element.receiptId == receipt.id);
+    receipt.payingMembers.forEach((member) {
+      member.debits.removeWhere((element) =>
+        element.receiptId == receipt.id
+      );
+    });
     group.receipts.remove(receipt);
     emit(ReceiptRemove(receipt, removedIndex, group.receipts));
     await dataSource.upsertGroup(group);
