@@ -47,6 +47,12 @@ class _ReceiptListWidgetState extends State<ReceiptListWidget> {
                             return _renderList(state.receipts, state.receipts.length);
                           }
 
+                          if (state is ReceiptInsert) {
+                            receiptListKey.currentState?.insertItem(state.newIndex);
+
+                            return _renderList(state.receipts, state.newIndex);
+                          }
+
                           if (state is ReceiptLoaded) {
                             return _renderList(state.receipts, state.receipts.length);
                           }

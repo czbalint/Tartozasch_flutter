@@ -59,19 +59,7 @@ class _MembersListWidgetState extends State<MembersListWidget> {
 
                       if (state is MemberInsert) {
                         memberListKey.currentState?.insertItem(state.newIndex);
-                        return AnimatedList(
-                            key: memberListKey,
-                            scrollDirection: Axis.horizontal,
-                            initialItemCount: state.members.length,
-                            itemBuilder: (context, index, animation) {
-                              return MemberListItem(
-                                member: state.members[index],
-                                archive: widget.archive,
-                                members: state.members,
-                                animation: animation,
-                              );
-                            }
-                        );
+                        return _renderList(state.members);
                       }
 
                       if (state is MemberLoaded) {

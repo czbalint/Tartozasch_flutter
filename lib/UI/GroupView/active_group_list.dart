@@ -27,7 +27,7 @@ class _ActiveGroupListState extends State<ActiveGroupList> {
               int count = groups.length;
               return AnimatedList(
                 key: listKey,
-                initialItemCount: count - 1,
+                initialItemCount: count,
                 itemBuilder: (context, index, animation){
                   return GroupListItem(
                     key: ObjectKey(groups[index]),

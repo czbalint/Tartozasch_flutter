@@ -64,7 +64,7 @@ class GroupCubit extends Cubit<GroupState> {
   }
   
   Future<void> addGroup(String groupName) async {
-      emit(GroupLoadState());
+      //emit(GroupLoadState());
       Group newGroup = Group(title: groupName, membersCount: 0, startDate: DateTime.now(), sumSpending: 0, archive: false );
       await dataSource.upsertGroup(newGroup);
       final groups = await getAllActiveGroups();
@@ -72,7 +72,7 @@ class GroupCubit extends Cubit<GroupState> {
   }
 
   Future<void> removeGroup(Group group) async {
-      emit(GroupLoadState());
+     // emit(GroupLoadState());
       var groups = await getAllActiveGroups();
       var removedIdx = groups.indexOf(group);
       var removedGroup = groups.removeAt(removedIdx);

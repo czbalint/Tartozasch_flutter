@@ -21,7 +21,7 @@ class NewReceiptAddMember extends NewReceiptCubitState{
   final int newIndex;
 
   @override
-  List<Object?> get props => [members];
+  List<Object?> get props => [members, newIndex];
 }
 
 class NewReceiptRemoveMember extends NewReceiptCubitState{

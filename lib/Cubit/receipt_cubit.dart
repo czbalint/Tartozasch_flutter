@@ -40,7 +40,17 @@ class ReceiptRemove extends ReceiptCubitState {
   const ReceiptRemove(this.removed, this.index, this.receipts);
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [removed, index, receipts];
+}
+
+class ReceiptInsert extends ReceiptCubitState {
+  final List<Receipt> receipts;
+  final int newIndex;
+
+  const ReceiptInsert(this.receipts, this.newIndex);
+
+  @override
+  List<Object?> get props => [receipts, newIndex];
 }
 
 class ReceiptCubit extends Cubit<ReceiptCubitState> {
@@ -58,7 +68,7 @@ class ReceiptCubit extends Cubit<ReceiptCubitState> {
   }
 
   Future<int> addNewReceipt(String name, Member member, int count, List<Member> payingMembers) async {
-    emit(ReceiptLoad());
+    //emit(ReceiptLoad());
     var newReceipt = Receipt(name: name, member: member, count: count, payingMembers: payingMembers);
     group.receipts.add(newReceipt);
     group.sumSpending += count;
@@ -68,13 +78,13 @@ class ReceiptCubit extends Cubit<ReceiptCubitState> {
       }
       pm.addDebit(member, count / payingMembers.length, newReceipt.id, false);
     }
-    emit(ReceiptLoaded(group.receipts));
     await dataSource.upsertGroup(group);
+    emit(ReceiptInsert(group.receipts, group.receipts.indexOf(newReceipt)));
     return newReceipt.id;
   }
 
   Future<void> removeReceipt(Receipt receipt) async {
-    emit(ReceiptLoad());
+    //emit(ReceiptLoad());
     group.sumSpending -= receipt.count;
     var removedIndex = group.receipts.indexOf(receipt);
 
