@@ -44,12 +44,18 @@ class _ReceiptListWidgetState extends State<ReceiptListWidget> {
                             receiptListKey.currentState!.removeItem(state.index, (context, animation) =>
                               ReceiptListItem(receipt: state.removed, archive: widget.archive, animation: animation,)
                             );
-                            return _renderList(state.receipts);
+                            return _renderList(state.receipts, state.receipts.length);
                           }
 
                           if (state is ReceiptLoaded) {
-                            return _renderList(state.receipts);
+                            return _renderList(state.receipts, state.receipts.length);
                           }
+
+                          if (state is ReceiptLoad){
+                            return Container();
+                          }
+
+
                           return Container();
                         }
                       ),
@@ -95,11 +101,11 @@ class _ReceiptListWidgetState extends State<ReceiptListWidget> {
     );
   }
 
-  Widget _renderList(List<Receipt> receipts) {
+  Widget _renderList(List<Receipt> receipts, int initCount) {
     if (receipts.isNotEmpty) {
       return AnimatedList(
         key: receiptListKey,
-        initialItemCount: receipts.length,
+        initialItemCount: initCount,
         itemBuilder: (context, index, animation) {
           return ReceiptListItem(receipt: receipts[index], archive: widget.archive, animation: animation,);
         },

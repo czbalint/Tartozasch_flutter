@@ -126,13 +126,14 @@ class _AddNewReceiptState extends State<AddNewReceipt> {
                       final newReceiptCubit = context.read<NewReceiptCubit>();
                       var receiptCount = int.parse(valueController.value.text);
                       //print(newReceiptCubit.members);
+                      Navigator.pop(context);
                       receiptCubit.addNewReceipt(
                         _nameController.value.text,
                         selectedMember!,
                         receiptCount,
                         divideType == DivideType.single ? newReceiptCubit.members : widget.members
                       );
-                      Navigator.pop(context);
+
                     },
                     child: const Text("HOZZÁAD"),
                   ),

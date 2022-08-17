@@ -52,6 +52,7 @@ class ReceiptCubit extends Cubit<ReceiptCubitState> {
   ReceiptCubit(this.dataSource) : super(const ReceiptInit());
 
   Future<void> refreshGroup(Group newGroup) async {
+    //emit(ReceiptLoad());
     group = newGroup;
     emit(ReceiptLoaded(group.receipts));
   }
@@ -67,8 +68,8 @@ class ReceiptCubit extends Cubit<ReceiptCubitState> {
       }
       pm.addDebit(member, count / payingMembers.length, newReceipt.id, false);
     }
-    await dataSource.upsertGroup(group);
     emit(ReceiptLoaded(group.receipts));
+    await dataSource.upsertGroup(group);
     return newReceipt.id;
   }
 
@@ -83,9 +84,9 @@ class ReceiptCubit extends Cubit<ReceiptCubitState> {
         element.receiptId == receipt.id
       );
     });
-    group.receipts.remove(receipt);
     emit(ReceiptRemove(receipt, removedIndex, group.receipts));
+    group.receipts.remove(receipt);
     await dataSource.upsertGroup(group);
-    emit(ReceiptLoaded(group.receipts));
+    //emit(ReceiptLoaded(group.receipts));
   }
 }

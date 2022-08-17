@@ -100,9 +100,10 @@ class _AddMemberDialogState extends State<AddMemberDialog> {
                         height: 30,
                         child: ElevatedButton(
                           onPressed: () {
+                            Navigator.pop(context);
                             detailsCubit.addMember(textController.value.text, selectedAvatar, selectedColor);
                             textController.clear();
-                            Navigator.pop(context);
+
                           },
                           child: const Text("OK"),
                         ),

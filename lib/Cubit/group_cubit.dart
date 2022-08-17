@@ -1,7 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/animation.dart';
-
 import '../Database/Groups/data_source.dart';
 import '../UI/GroupView/group.dart';
 
@@ -66,6 +64,7 @@ class GroupCubit extends Cubit<GroupState> {
   }
   
   Future<void> addGroup(String groupName) async {
+      emit(GroupLoadState());
       Group newGroup = Group(title: groupName, membersCount: 0, startDate: DateTime.now(), sumSpending: 0, archive: false );
       await dataSource.upsertGroup(newGroup);
       final groups = await getAllActiveGroups();
@@ -73,6 +72,7 @@ class GroupCubit extends Cubit<GroupState> {
   }
 
   Future<void> removeGroup(Group group) async {
+      emit(GroupLoadState());
       var groups = await getAllActiveGroups();
       var removedIdx = groups.indexOf(group);
       var removedGroup = groups.removeAt(removedIdx);
@@ -82,6 +82,7 @@ class GroupCubit extends Cubit<GroupState> {
   }
   
   Future<void> archiveGroup(Group group) async {
+    emit(GroupLoadState());
     var groups = await getAllActiveGroups();
     var removedIdx = groups.indexOf(group);
     var removedGroup = groups.removeAt(removedIdx);

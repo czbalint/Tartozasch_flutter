@@ -43,6 +43,16 @@ class MemberRemove extends MemberCubitState {
   List<Object?> get props => [removed, index, members];
 }
 
+class MemberInsert extends MemberCubitState {
+  final List<Member> members;
+  final int newIndex;
+
+  const MemberInsert(this.members, this.newIndex);
+
+  @override
+  List<Object?> get props => [members];
+}
+
 class MemberCubit extends Cubit<MemberCubitState> {
   MemberCubit(this.dataSource) : super(const MemberInit());
 
@@ -59,7 +69,7 @@ class MemberCubit extends Cubit<MemberCubitState> {
     group.members.add(Member(name: name, color: color, avatar: avatar));
     group.membersCount = group.members.length;
     await dataSource.upsertGroup(group);
-    emit(MemberLoaded(group.members));
+    emit(MemberInsert(group.members, group.members.length - 1));
   }
 
   Future<void> removeMember(Member member) async {
@@ -69,6 +79,6 @@ class MemberCubit extends Cubit<MemberCubitState> {
     group.members.remove(member);
     emit(MemberRemove(member, removedIndex, group.members));
     await dataSource.upsertGroup(group);
-    emit(MemberLoaded(group.members));
+    //emit(MemberLoaded(group.members));
   }
 }
