@@ -89,7 +89,7 @@ class _SummaryPageState extends State<SummaryPage> {
                 itemCount: widget.group.members.length,
                 itemBuilder: (context, index) {
                   var cm = widget.group.members[index];
-                  if (memberDebits.containsKey(cm.id)) {
+                  if (memberDebits.containsKey(cm.id) && cm.id != selectedMember.id) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: MemberListItem(

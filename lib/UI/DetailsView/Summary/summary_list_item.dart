@@ -98,7 +98,7 @@ class _MemberListItemState extends State<MemberListItem> {
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 5),
                                 child: Text(
-                                  widget.debitSum.toString(),
+                                  widget.debitSum.toStringAsFixed(2),
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 17

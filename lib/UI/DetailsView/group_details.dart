@@ -57,33 +57,31 @@ class _GroupDetailsState extends State<GroupDetails> {
       body: Column(
         children: [
           MembersListWidget(archive: widget.group.archive,),
-          Expanded(
+          //ide esetleg kell majd egy Expendid widget
+          SizedBox(
+            height: 500,
             child: ReceiptListWidget(members: widget.group.members, archive: widget.group.archive,)
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 30),
-                child: SizedBox(
-                  height: 35,
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // showDialog(context: context, builder: (BuildContext contex) {
-                      //   return SummarizeWidget(group: widget.group);
-                      // });
-                      Navigator.pushNamed(
-                        context,
-                        "/summaryPage",
-                        arguments: widget.group
-                      );
-                    },
-                    child: const Text("Összegzés"),
-                  ),
-                ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size(200, 50),
+              maximumSize: const Size(300, 60),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+              textStyle: const TextStyle(
+                fontSize: 20
               )
-            ],
+            ),
+            onPressed: () {
+              // showDialog(context: context, builder: (BuildContext contex) {
+              //   return SummarizeWidget(group: widget.group);
+              // });
+              Navigator.pushNamed(
+                context,
+                "/summaryPage",
+                arguments: widget.group
+              );
+            },
+            child: const Text("Összegzés"),
           )
         ],
       ),

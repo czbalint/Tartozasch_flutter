@@ -88,12 +88,17 @@ class ReceiptCubit extends Cubit<ReceiptCubitState> {
     group.sumSpending -= receipt.count;
     var removedIndex = group.receipts.indexOf(receipt);
 
-    receipt.member.debits.removeWhere((element) => element.receiptId == receipt.id);
-    receipt.payingMembers.forEach((member) {
-      member.debits.removeWhere((element) =>
-        element.receiptId == receipt.id
-      );
+    // receipt.member.debits.removeWhere((element) => element.receiptId == receipt.id);
+    // for (var member in receipt.payingMembers) {
+    //   member.debits.removeWhere((element) =>
+    //     element.receiptId == receipt.id
+    //   );
+    // }
+
+    group.members.forEach((member) {
+      member.debits.removeWhere((element) => element.receiptId == receipt.id);
     });
+
     emit(ReceiptRemove(receipt, removedIndex, group.receipts));
     group.receipts.remove(receipt);
     await dataSource.upsertGroup(group);
