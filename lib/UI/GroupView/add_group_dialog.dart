@@ -72,7 +72,7 @@ class _AddGroupStateDialog extends State<AddGroupDialog> {
                     children: [
                       SizedBox(
                         height: 30,
-                        child: ElevatedButton(
+                        child: OutlinedButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },

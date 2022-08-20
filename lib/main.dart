@@ -10,6 +10,7 @@ import 'package:flutterhf/Cubit/group_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterhf/Database/Groups/data_source.dart';
 import 'package:flutterhf/Database/Groups/floor_group_repository.dart';
+import 'package:flutterhf/Styles/button_styles.dart';
 import 'package:flutterhf/UI/DetailsView/Member/member.dart';
 import 'package:flutterhf/UI/DetailsView/Receipe/add_new_receipt_page.dart';
 import 'package:flutterhf/UI/DetailsView/Summary/summary_page.dart';
@@ -59,6 +60,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: const Color.fromARGB(255, 66, 138, 40),
           primarySwatch: Colors.green,
+        ).copyWith(
+          elevatedButtonTheme: ElevatedButtonThemeData(style: ButtonCustomStyles().elevatedButtonStyle),
+          outlinedButtonTheme: OutlinedButtonThemeData(style: ButtonCustomStyles().outlinedButtonStyle(const Color.fromARGB(255, 66, 138, 40)))
         ),
         home: const GroupList(),
         onGenerateRoute: (route) {

@@ -63,14 +63,7 @@ class _GroupDetailsState extends State<GroupDetails> {
             child: ReceiptListWidget(members: widget.group.members, archive: widget.group.archive,)
           ),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size(200, 50),
-              maximumSize: const Size(300, 60),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-              textStyle: const TextStyle(
-                fontSize: 20
-              )
-            ),
+
             onPressed: () {
               // showDialog(context: context, builder: (BuildContext contex) {
               //   return SummarizeWidget(group: widget.group);

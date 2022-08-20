@@ -117,26 +117,23 @@ class _AddNewReceiptState extends State<AddNewReceipt> {
                   }
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 20),
-                child: SizedBox(
-                  height: 30,
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: ElevatedButton(
-                     onPressed: () {
-                      final newReceiptCubit = context.read<NewReceiptCubit>();
-                      var receiptCount = int.parse(valueController.value.text);
-                      //print(newReceiptCubit.members);
-                      Navigator.pop(context);
-                      receiptCubit.addNewReceipt(
-                        _nameController.value.text,
-                        selectedMember!,
-                        receiptCount,
-                        divideType == DivideType.single ? newReceiptCubit.members : widget.members
-                      );
+                padding: EdgeInsets.symmetric(vertical: 30),
+                child: ElevatedButton(
 
-                    },
-                    child: const Text("HOZZÁAD"),
-                  ),
+                   onPressed: () {
+                    final newReceiptCubit = context.read<NewReceiptCubit>();
+                    var receiptCount = int.parse(valueController.value.text);
+                    //print(newReceiptCubit.members);
+                    Navigator.pop(context);
+                    receiptCubit.addNewReceipt(
+                      _nameController.value.text,
+                      selectedMember!,
+                      receiptCount,
+                      divideType == DivideType.single ? newReceiptCubit.members : widget.members
+                    );
+
+                  },
+                  child: const Text("HOZZÁAD"),
                 ),
               )
             ],

@@ -89,7 +89,7 @@ class _AddMemberDialogState extends State<AddMemberDialog> {
                     children: [
                       SizedBox(
                         height: 30,
-                        child: ElevatedButton(
+                        child: OutlinedButton(
                           onPressed: () {
                             Navigator.pop(context);
                           },
