@@ -8,6 +8,7 @@ import 'package:flutterhf/UI/DetailsView/Receipe/add_new_receipt_dialog.dart';
 import 'package:flutterhf/UI/DetailsView/Member/member.dart';
 import 'package:flutterhf/UI/DetailsView/Receipe/receipe.dart';
 import 'package:flutterhf/UI/DetailsView/Receipe/receipt_list_item.dart';
+import 'package:flutterhf/UI/DetailsView/Receipe/receipt_list_item_buble.dart';
 
 class ReceiptListWidget extends StatefulWidget {
   const ReceiptListWidget({Key? key, required this.members, required this.archive}) : super(key: key);
@@ -113,7 +114,11 @@ class _ReceiptListWidgetState extends State<ReceiptListWidget> {
         key: receiptListKey,
         initialItemCount: initCount,
         itemBuilder: (context, index, animation) {
-          return ReceiptListItem(receipt: receipts[index], archive: widget.archive, animation: animation,);
+         // return ReceiptListItem(receipt: receipts[index], archive: widget.archive, animation: animation,);
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: ReceiptItemBubble(receipt: receipts[index], archive: widget.archive, animation: animation),
+          );
         },
       );
     }
