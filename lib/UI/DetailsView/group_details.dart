@@ -54,29 +54,32 @@ class _GroupDetailsState extends State<GroupDetails> {
           )
         ],
       ),
-      body: Column(
-        children: [
-          MembersListWidget(archive: widget.group.archive,),
-          //ide esetleg kell majd egy Expendid widget
-          SizedBox(
-            height: 500,
-            child: ReceiptListWidget(members: widget.group.members, archive: widget.group.archive,)
-          ),
-          ElevatedButton(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            MembersListWidget(archive: widget.group.archive,),
 
-            onPressed: () {
-              // showDialog(context: context, builder: (BuildContext contex) {
-              //   return SummarizeWidget(group: widget.group);
-              // });
-              Navigator.pushNamed(
-                context,
-                "/summaryPage",
-                arguments: widget.group
-              );
-            },
-            child: const Text("Összegzés"),
-          )
-        ],
+            //ide esetleg kell majd egy Expendid widget
+            SizedBox(
+              height: 450,
+              child: ReceiptListWidget(members: widget.group.members, archive: widget.group.archive,)
+            ),
+            ElevatedButton(
+
+              onPressed: () {
+                // showDialog(context: context, builder: (BuildContext contex) {
+                //   return SummarizeWidget(group: widget.group);
+                // });
+                Navigator.pushNamed(
+                  context,
+                  "/summaryPage",
+                  arguments: widget.group
+                );
+              },
+              child: const Text("Összegzés"),
+            )
+          ],
+        ),
       ),
     );
   }

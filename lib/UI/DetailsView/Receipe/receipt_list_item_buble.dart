@@ -22,12 +22,14 @@ class _ReceiptItemBubbleState extends State<ReceiptItemBubble> {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(30),
         child: Stack(
+
           children: [
             Container(
-              margin: EdgeInsets.symmetric(vertical: 30),
-              width: 300,
-              height: 80,
+              //margin: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+
+              width: MediaQuery.of(context).size.width,
               child: Stack(
+                alignment: Alignment.center,
                 children: [
                   BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
@@ -35,14 +37,18 @@ class _ReceiptItemBubbleState extends State<ReceiptItemBubble> {
                   ),
 
                   Container(
+                    width: 300,
+                    height: 80,
+                    margin: EdgeInsets.symmetric(vertical: 20),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black54, width: 3),
                       borderRadius: BorderRadius.circular(30),
                       color: Colors.white54
                     ),
+                    child:  Text(widget.receipt.name),
                   ),
 
-                  Text(widget.receipt.name)
+
                 ],
               ),
             )

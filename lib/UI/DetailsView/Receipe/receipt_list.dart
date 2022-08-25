@@ -31,41 +31,37 @@ class _ReceiptListWidgetState extends State<ReceiptListWidget> {
               height: 400,
               width: MediaQuery.of(context).size.width,
               child:  Scaffold(
-                  body: SizedBox(
-                    height: 400,
-                    width: MediaQuery.of(context).size.width,
-                    child: DecoratedBox(
-                      decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                      color: Color.fromARGB(255, 232, 232, 232)
-                      ),
-                      child: BlocBuilder<ReceiptCubit, ReceiptCubitState>(
-                        builder: (context, state) {
-                          if (state is ReceiptRemove) {
-                            receiptListKey.currentState!.removeItem(state.index, (context, animation) =>
-                              ReceiptListItem(receipt: state.removed, archive: widget.archive, animation: animation,)
-                            );
-                            return _renderList(state.receipts, state.receipts.length);
-                          }
+                  body: DecoratedBox(
+                    decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    color: Color.fromARGB(255, 232, 232, 232)
+                    ),
+                    child: BlocBuilder<ReceiptCubit, ReceiptCubitState>(
+                      builder: (context, state) {
+                        if (state is ReceiptRemove) {
+                          receiptListKey.currentState!.removeItem(state.index, (context, animation) =>
+                            ReceiptListItem(receipt: state.removed, archive: widget.archive, animation: animation,)
+                          );
+                          return _renderList(state.receipts, state.receipts.length);
+                        }
 
-                          if (state is ReceiptInsert) {
-                            receiptListKey.currentState?.insertItem(state.newIndex);
+                        if (state is ReceiptInsert) {
+                          receiptListKey.currentState?.insertItem(state.newIndex);
 
-                            return _renderList(state.receipts, state.newIndex);
-                          }
+                          return _renderList(state.receipts, state.newIndex);
+                        }
 
-                          if (state is ReceiptLoaded) {
-                            return _renderList(state.receipts, state.receipts.length);
-                          }
+                        if (state is ReceiptLoaded) {
+                          return _renderList(state.receipts, state.receipts.length);
+                        }
 
-                          if (state is ReceiptLoad){
-                            return Container();
-                          }
-
-
+                        if (state is ReceiptLoad){
                           return Container();
                         }
-                      ),
+
+
+                        return Container();
+                      }
                     ),
                   ),
                   floatingActionButton: Builder(
@@ -115,10 +111,7 @@ class _ReceiptListWidgetState extends State<ReceiptListWidget> {
         initialItemCount: initCount,
         itemBuilder: (context, index, animation) {
          // return ReceiptListItem(receipt: receipts[index], archive: widget.archive, animation: animation,);
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: ReceiptItemBubble(receipt: receipts[index], archive: widget.archive, animation: animation),
-          );
+          return ReceiptItemBubble(receipt: receipts[index], archive: widget.archive, animation: animation);
         },
       );
     }
