@@ -63,6 +63,8 @@ class MyApp extends StatelessWidget {
         ).copyWith(
           elevatedButtonTheme: ElevatedButtonThemeData(style: ButtonCustomStyles().elevatedButtonStyle),
           outlinedButtonTheme: OutlinedButtonThemeData(style: ButtonCustomStyles().outlinedButtonStyle(const Color.fromARGB(255, 66, 138, 40)))
+        ).copyWith(
+          splashColor: Color.fromARGB(205, 159, 227, 161)
         ),
         home: const GroupList(),
         onGenerateRoute: (route) {

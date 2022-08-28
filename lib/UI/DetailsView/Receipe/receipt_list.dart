@@ -34,7 +34,7 @@ class _ReceiptListWidgetState extends State<ReceiptListWidget> {
                   body: DecoratedBox(
                     decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(15)),
-                    color: Color.fromARGB(255, 232, 232, 232)
+                   // color: Color.fromARGB(255, 232, 232, 232)
                     ),
                     child: BlocBuilder<ReceiptCubit, ReceiptCubitState>(
                       builder: (context, state) {
