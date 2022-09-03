@@ -60,11 +60,29 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: const Color.fromARGB(255, 66, 138, 40),
           primarySwatch: Colors.green,
+          textTheme: Theme.of(context).textTheme.apply(
+            displayColor: Colors.black
+          ).copyWith(
+            labelMedium: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w300
+            ),
+            headlineLarge: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: Colors.black
+            ),
+            headlineMedium: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.black
+            ),
+          )
         ).copyWith(
           elevatedButtonTheme: ElevatedButtonThemeData(style: ButtonCustomStyles().elevatedButtonStyle),
           outlinedButtonTheme: OutlinedButtonThemeData(style: ButtonCustomStyles().outlinedButtonStyle(const Color.fromARGB(255, 66, 138, 40)))
         ).copyWith(
-          splashColor: Color.fromARGB(205, 159, 227, 161)
+          splashColor: const Color.fromARGB(205, 159, 227, 161)
         ),
         home: const GroupList(),
         onGenerateRoute: (route) {
