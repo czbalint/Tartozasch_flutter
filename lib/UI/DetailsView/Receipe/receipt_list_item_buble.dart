@@ -170,7 +170,11 @@ class _ReceiptItemBubbleState extends State<ReceiptItemBubble> {
                                       ),
                                       Align(
                                         alignment: Alignment.center,
-                                        child: Text("Valami"),
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(horizontal: 10),
+                                          child: Text("Fizető személyek"),
+                                          color: Theme.of(context).backgroundColor
+                                        ),
                                       )
                                     ],
                                   )
